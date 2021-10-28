@@ -20,29 +20,64 @@ server = app.server
 ######################################################################################
 ###################################### NAVBAR ########################################
 ######################################################################################
+navbar = dbc.Navbar(
+    dbc.Container([
+        dbc.Row([
+                dbc.Col(
+                    dbc.Row([
+                        html.Div(dbc.Button(html.Span([html.I(id="span_botao",className="fas fa-bars ml-2")]), outline=True, color="info", className="d-grid gap-2 d-md-block", id="btn_sidebar"),style={"width":"30%", "color":"#C1B9AE"}),
+                        html.Div("Everton",style={"width":"50%", "color":"#C1B9AE"})],
+                        justify="center",align="center",
+                    ),
+                    width=2,xl = 2,md = 3, xs = 4,),
+                dbc.Col(html.Div(""),width=9,xl=9,md = 7,xs = 5),
+                dbc.Col(                    
+                    dbc.Row([html.Div(dbc.NavItem(dbc.NavLink("KPIs", href="/page-kpis",style={"color":"#C1B9AE"} )),style={"width":"50%"}),
+                             html.Div(dbc.DropdownMenu(
+                                                        children=[
+                                                            dbc.DropdownMenuItem("Página 1", href="/page-1"),
+                                                            dbc.DropdownMenuItem("Página 2", href="/page-2"),
+                                                            dbc.DropdownMenuItem("Página 3", href="/page-3"),
+                                                            dbc.DropdownMenuItem("Página de KPIs", href="/page-kpis"),
+                                                        ],
+                                                        group=True,
+                                                        in_navbar=True,
+                                                        label="Status",
+                                                        color="info", className="m-1",
+                                                        align_end = True,
+                                                       ),style={"width":"50%", "color":"#ffffff"})],justify="center",align="center"),
+                    width=1,  
+                    xl = 1,
+                    md = 2,
+                    xs = 3,
+                    )],align="center",
+                ),
+
+        ],
+        fluid="center",
+        style={"width":"92%"},
+        ),
+    color="dark",
+    dark=True,
+    fixed="top",
+    style={"z-index":2}
+)
+
+'''
+
 
 navbar = dbc.NavbarSimple(
-    children=[
-        dbc.Button(html.Span([html.I(id="span_botao",className="fas fa-bars ml-2")]),style=({"marginRight":"64rem"}), outline=True, color="info", className="mr-1", id="btn_sidebar"),
-        dbc.NavItem(dbc.NavLink("KPIs", href="/page-kpis")),
-        dbc.DropdownMenu(
-            children=[
-                dbc.DropdownMenuItem("Página 1", href="/page-1"),
-                dbc.DropdownMenuItem("Página 2", href="/page-2"),
-                dbc.DropdownMenuItem("Página 3", href="/page-3"),
-                dbc.DropdownMenuItem("Página de KPIs", href="/page-kpis"),
-            ],
-            nav=True,
-            in_navbar=True,
-            label="Status",
-            align_end = True,
-        ),
+    children=[        
+        
+        
     ],
     brand="Everton",
     brand_href="#",
     color="dark",
     dark=True,
     fluid=True,)
+'''
+
 
 ######################################################################################
 ###################################### SIDEBAR #######################################
@@ -50,28 +85,29 @@ navbar = dbc.NavbarSimple(
 
 SIDEBAR_STYLE = {
     "position": "fixed",
-    "top": 62.5,
+    "top":"3.5rem",
     "left": 0,
     "bottom": 0,
     "width": "16rem",
     "height": "100%",
     "z-index": 1,
-    "overflow-x": "hidden",
+    "overflow":"auto",
     "transition": "all 0.5s",
-    "padding": "0.5rem 1rem",
+    "padding": "0rem 1rem",
     "background-color": "#f8f9fa",}
 SIDEBAR_HIDDEN = {
+    "top":"3.5rem",
     "position": "fixed",
-    "top": 62.5,
     "left": "-16rem",
     "bottom": 0,
     "width": "16rem",
     "height": "100%",
-    "z-index": 1,
-    "overflow-x": "hidden",
+    "z-index": 2,
+    "overflow":"auto",
     "transition": "all 0.5s",
-    "padding": "0rem 0rem",
+    "padding": "0rem 1rem",
     "background-color": "#f8f9fa",}
+
 sidebar = html.Div(
     [
         html.H2("Sidebar", className="display-4"),
@@ -97,19 +133,22 @@ sidebar = html.Div(
 ######################################################################################
 
 CONTENT_STYLE = {
+    "position": "relative",
+    "top":"4rem",
     "transition": "margin-left .5s",
     "margin-left": "18rem",
     "margin-right": "2rem",
-    "margin-top":".5rem",
-    "padding": "2rem 1rem",
+    "padding": "0rem 1rem",
     "background-color": "#f8f9fa",}
 CONTENT_STYLE_sidebar_hidden = {
+    "position": "relative",
+    "top":"4rem",
     "transition": "margin-left .5s",
     "margin-left": "2rem",
     "margin-right": "2rem",
-    "padding": "2rem 1rem",
-    "margin-top":".5rem",
+    "padding": "0rem 1rem",
     "background-color": "#f8f9fa",}
+
 content = html.Div(
 
     id="page-content",
