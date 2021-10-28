@@ -16,6 +16,7 @@ app = dash.Dash(__name__,
                 external_stylesheets=[dbc.themes.BOOTSTRAP, dbc.icons.FONT_AWESOME])
                                                    # utilizamos bootstrap no navbar
 
+server = app.server
 ######################################################################################
 ###################################### NAVBAR ########################################
 ######################################################################################
@@ -126,6 +127,16 @@ app.layout = html.Div([
     dcc.Store(id='side_click'),
 
     dcc.Location(id='url', refresh=False)])
+home_page = html.Div([
+    html.H1('HOME'),
+    dcc.Link('Go to Page 1', href='/page-1'),
+    html.Br(),
+    dcc.Link('Go to Page 2', href='/page-2'),
+    html.Br(),
+    dcc.Link('Go to Page 3', href='/page-3'),
+    html.Br(),
+    dcc.Link('Go to Page KPI', href='/page-kpis'),])
+
 # página de path errado
 index_page = html.Div([
     html.H1('URL não encontrada'),
@@ -261,7 +272,9 @@ page_kpis_layout = html.Div([
 @app.callback(dash.dependencies.Output('page-content', 'children'),
               [dash.dependencies.Input('url', 'pathname')])
 def display_page(pathname):
-    if pathname == '/page-1':
+    if pathname == '/':
+        return home_page
+    elif pathname == '/page-1':
         return page_1_layout
     elif pathname == '/page-2':
         return page_2_layout
@@ -304,5 +317,6 @@ def toggle_sidebar(n, nclick):
 ###########################################################################################
 ############################### Inicialização do APP ######################################
 ###########################################################################################
+import os
 if __name__ == '__main__':
-    app.run_server(debug=True)
+    app.run_server(debug=False,port=os.getenv("PORT",5000))
