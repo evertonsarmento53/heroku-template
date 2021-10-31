@@ -63,21 +63,6 @@ navbar = dbc.Navbar(
     style={"z-index":2}
 )
 
-'''
-
-
-navbar = dbc.NavbarSimple(
-    children=[        
-        
-        
-    ],
-    brand="Everton",
-    brand_href="#",
-    color="dark",
-    dark=True,
-    fluid=True,)
-'''
-
 
 ######################################################################################
 ###################################### SIDEBAR #######################################
